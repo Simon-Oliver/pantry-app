@@ -1,4 +1,5 @@
 import React from 'react';
+import { Item, FoodItem } from '../helper/inventory';
 
 class AddItem extends React.Component {
   state = {
@@ -6,7 +7,8 @@ class AddItem extends React.Component {
   };
   handleOnsubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+
+    console.log(new FoodItem(this.state.itemName, true, '2019-05-12'));
   }
 
   handleInputChange(e) {
