@@ -1,5 +1,6 @@
 import React from 'react';
 import { Item, FoodItem } from '../helper/inventory';
+import inventoryData from '../helper/inventoryData.json';
 
 class AddItem extends React.Component {
   state = {
@@ -8,7 +9,9 @@ class AddItem extends React.Component {
   handleOnsubmit(e) {
     e.preventDefault();
 
+    console.log('------->', inventoryData);
     console.log(new FoodItem(this.state.itemName, true, '2019-05-12'));
+    this.setState({ itemName: '' });
   }
 
   handleInputChange(e) {
