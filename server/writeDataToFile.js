@@ -1,7 +1,8 @@
 var fs = require('fs');
 const path = require('path');
+const uniqid = require('uniqid');
 
-const createInventoryItem = data => {
+const createInventoryItem = newItem => {
   fs.readFile(path.resolve(__dirname, 'inventoryData.json'), 'utf8', function readFileCallback(
     err,
     data
@@ -17,7 +18,7 @@ const createInventoryItem = data => {
       console.log(err);
     } else {
       let obj = JSON.parse(data); //now it an object
-      obj.item.push({ id: 2, square: 3 }); //add some data
+      obj.item.push({ ...newItem, id: uniqid() }); //add some data
       let json = JSON.stringify(obj); //convert it back to json
       fs.writeFile('inventoryData.json', json, 'utf8', (err, data) => {
         if (err) {
@@ -30,4 +31,4 @@ const createInventoryItem = data => {
   });
 };
 
-createInventoryItem({ test: 'entry' });
+export default createInventoryItem;
