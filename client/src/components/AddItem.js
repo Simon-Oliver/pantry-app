@@ -1,12 +1,20 @@
 import React from 'react';
 import { Item, FoodItem } from '../helper/inventory';
-import inventoryData from '../helper/inventoryData.json';
 import axios from 'axios';
 
 class AddItem extends React.Component {
   state = {
     itemName: ''
   };
+
+  componentDidMount() {
+    axios
+      .get('http://localhost:3000/inventory')
+      .then(res => console.log('Get request has fired', res.data))
+      .catch(err => {
+        console.error(err);
+      });
+  }
 
   callBackendAPI = async () => {
     const response = await fetch('/express_backend');
@@ -28,7 +36,6 @@ class AddItem extends React.Component {
       });
 
     console.log('Mounted');
-    console.log('------->', inventoryData);
     console.log(new FoodItem(this.state.itemName, true, '2019-05-12'));
     this.setState({ itemName: '' });
   }

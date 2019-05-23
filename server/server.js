@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var inventory = require('./writeDataToFile');
+var inventoryData = require('./inventoryData.json');
 
 const port = process.env.PORT || 5000;
 
@@ -13,8 +14,8 @@ app.post('/create', (req, res) => {
   console.log(req);
 });
 
-app.get('/hello', function(req, res) {
-  res.send('hello world');
+app.get('/inventory', function(req, res) {
+  res.send(inventoryData);
 });
 
 // create a GET route

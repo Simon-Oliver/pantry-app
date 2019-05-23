@@ -18,7 +18,7 @@ module.exports = {
         );
         console.log(err);
       } else {
-        let obj = JSON.parse(data); //now it an object
+        let obj = JSON.parse(data); //now it's an object
         obj.item.push({ ...newItem, id: uniqid() }); //add some data
         let json = JSON.stringify(obj); //convert it back to json
         fs.writeFile('inventoryData.json', json, 'utf8', (err, data) => {
@@ -27,7 +27,7 @@ module.exports = {
           } else {
             console.log(data, 'succsess');
           }
-        }); // write it back
+        });
       }
     });
   }
