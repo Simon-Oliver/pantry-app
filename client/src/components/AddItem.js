@@ -1,6 +1,7 @@
 import React from 'react';
 import { Item, FoodItem } from '../helper/inventory';
 import inventoryData from '../helper/inventoryData.json';
+import axios from 'axios';
 
 class AddItem extends React.Component {
   state = {
@@ -19,9 +20,12 @@ class AddItem extends React.Component {
 
   handleOnsubmit(e) {
     e.preventDefault();
-    this.callBackendAPI()
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    axios
+      .post('http://localhost:3000/create', this.state)
+      .then(() => console.log('Post request has fired'))
+      .catch(err => {
+        console.error(err);
+      });
 
     console.log('Mounted');
     console.log('------->', inventoryData);
