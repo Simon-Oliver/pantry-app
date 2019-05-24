@@ -1,54 +1,44 @@
 import React from 'react';
-import { Item, FoodItem } from '../helper/inventory';
+import { FoodItem } from '../helper/inventory';
 import axios from 'axios';
 
 class AddItem extends React.Component {
   state = {
-    itemName: ''
-  };
-
-  componentDidMount() {
-    axios
-      .get('http://localhost:3000/inventory')
-      .then(res => console.log('Get request has fired', res.data))
-      .catch(err => {
-        console.error(err);
-      });
-  }
-
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message);
-    }
-    console.log(body);
+    name: ''
   };
 
   handleOnsubmit(e) {
     e.preventDefault();
+    const obj = new FoodItem(this.state.name);
     axios
-      .post('http://localhost:3000/create', this.state)
-      .then(() => console.log('Post request has fired'))
+      .post('http://localhost:3000/create', obj)
+      .then(res => console.log(res))
+      .then(() => {
+        axios
+          .get('http://localhost:3000/inventory')
+          .then(res => {
+            console.log('Get request has fired', res.data);
+            this.props.setAppState(res.data.items);
+            this.setState({ name: '' });
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      })
       .catch(err => {
         console.error(err);
       });
-
-    console.log('Mounted');
-    console.log(new FoodItem(this.state.itemName, true, '2019-05-12'));
-    this.setState({ itemName: '' });
   }
 
   handleInputChange(e) {
-    this.setState({ itemName: e.target.value });
+    this.setState({ name: e.target.value });
   }
 
   render() {
     return (
       <form onSubmit={e => this.handleOnsubmit(e)}>
         <label>Add Item</label>
-        <input onChange={e => this.handleInputChange(e)} value={this.state.itemName} />
+        <input onChange={e => this.handleInputChange(e)} value={this.state.name} />
         <button>Submit</button>
       </form>
     );

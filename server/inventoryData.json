@@ -1,7 +1,1 @@
-{
-  "item": [
-    { "test": "test", "id": "7q1t12qqjw0dsffm" },
-    { "itemName": "fod item 1", "id": "7q1t12r2jw0dtpg3" },
-    { "itemName": "Beef123", "id": "7q1t12vgjw0fwosc" }
-  ]
-}
+{"items":[{"name":"pig","hasExpiryDate":false,"expiryDate":null,"isExpired":false,"isOpened":false,"useByAfterOpening":null,"id":"7q1t16c4jw22gx8l"},{"name":"cow","hasExpiryDate":false,"expiryDate":null,"isExpired":false,"isOpened":false,"useByAfterOpening":null,"id":"7q1t16cejw22gz6n"}]}

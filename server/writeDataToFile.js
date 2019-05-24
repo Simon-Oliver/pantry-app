@@ -10,7 +10,7 @@ module.exports = {
     ) {
       if (err) {
         var obj = {
-          item: []
+          items: []
         };
         var json = JSON.stringify(obj);
         fs.writeFile('inventoryData.json', json, 'utf8', (err, data) =>
@@ -19,7 +19,7 @@ module.exports = {
         console.log(err);
       } else {
         let obj = JSON.parse(data); //now it's an object
-        obj.item.push({ ...newItem, id: uniqid() }); //add some data
+        obj.items.push({ ...newItem, id: uniqid() }); //add some data
         let json = JSON.stringify(obj); //convert it back to json
         fs.writeFile('inventoryData.json', json, 'utf8', (err, data) => {
           if (err) {
