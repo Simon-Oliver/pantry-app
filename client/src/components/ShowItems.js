@@ -1,7 +1,9 @@
 import React from 'react';
+import Item from './Item';
 
 const ShowItems = props => {
-  const renderList = props.items.map(e => <p key={e.id}>{e.name}</p>);
+  const renderList = props.items.map(e => <Item key={e.id} data={e} />);
+  console.log(renderList);
   return <div>{renderList}</div>;
 };
 

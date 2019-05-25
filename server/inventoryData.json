@@ -2,33 +2,33 @@
   "items": [
     {
       "name": "Milk",
-      "expiryDate": null,
-      "hasExpiryDate": false,
+      "expiryDate": "2019-05-24T14:00:00.000Z",
+      "hasExpiryDate": true,
       "isExpired": false,
-      "willExpireIn": null,
+      "willExpireIn": 0,
       "isOpened": false,
       "useByAfterOpening": null,
-      "id": "7q1t18fqjw383hei"
+      "id": "7q1t18s3jw39c2b3"
     },
     {
-      "name": "Cow",
-      "expiryDate": "2019-04-14T14:00:00.000Z",
+      "name": "Eggs",
+      "expiryDate": "2019-01-12T13:00:00.000Z",
       "hasExpiryDate": true,
       "isExpired": true,
-      "willExpireIn": -40,
+      "willExpireIn": -132,
       "isOpened": false,
       "useByAfterOpening": null,
-      "id": "7q1t18gajw383viy"
+      "id": "7q1t18s6jw39caev"
     },
     {
-      "name": "Milk",
-      "expiryDate": "2019-05-30T14:00:00.000Z",
+      "name": "Chees",
+      "expiryDate": "2026-06-18T14:00:00.000Z",
       "hasExpiryDate": true,
       "isExpired": false,
-      "willExpireIn": 5,
+      "willExpireIn": 2581,
       "isOpened": false,
       "useByAfterOpening": null,
-      "id": "7q1t18gkjw3841h9"
+      "id": "7q1t18s9jw39cr09"
     }
   ]
 }

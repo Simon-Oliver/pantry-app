@@ -5,7 +5,7 @@ export class Item {
     this.name = name;
     this.expiryDate = moment(expiryDate);
     this.hasExpiryDate = expiryDate ? true : false;
-    this.isExpired = this.expiryDate.isBefore();
+    this.isExpired = this.expiryDate.isBefore() && !this.expiryDate.isSame(moment(), 'day');
     this.willExpireIn = this.expiryDate.diff(moment(), 'days');
   }
 }
