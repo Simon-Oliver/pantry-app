@@ -4,12 +4,14 @@ import axios from 'axios';
 
 class AddItem extends React.Component {
   state = {
-    name: ''
+    name: '',
+    expiryDate: ''
   };
 
   handleOnsubmit(e) {
     e.preventDefault();
-    const obj = new FoodItem(this.state.name);
+    const { name, expiryDate } = this.state;
+    const obj = new FoodItem(name, expiryDate);
     axios
       .post('http://localhost:3000/create', obj)
       .then(() => {
@@ -17,7 +19,7 @@ class AddItem extends React.Component {
           .get('http://localhost:3000/inventory')
           .then(res => {
             this.props.setAppState(res.data.items);
-            this.setState({ name: '' });
+            this.setState({ name: '', expiryDate: '' });
           })
           .catch(err => {
             console.error(err);
@@ -29,14 +31,16 @@ class AddItem extends React.Component {
   }
 
   handleInputChange(e) {
-    this.setState({ name: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
     return (
-      <form onSubmit={e => this.handleOnsubmit(e)}>
+      <form onSubmit={e => this.handleOnsubmit(e)} onChange={e => this.handleInputChange(e)}>
         <label>Add Item</label>
-        <input onChange={e => this.handleInputChange(e)} value={this.state.name} />
+        <input name="name" value={this.state.name} />
+        <label for="expiryDate">Start date:</label>
+        <input type="date" id="expiryDate" name="expiryDate" value={this.state.expiryDate} />
         <button>Submit</button>
       </form>
     );

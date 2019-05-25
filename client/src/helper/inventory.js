@@ -1,23 +1,18 @@
 const moment = require('moment');
 
 export class Item {
-  constructor(name, hasExpiryDate = false, expiryDate = null) {
+  constructor(name, expiryDate = null) {
     this.name = name;
-    this.hasExpiryDate = hasExpiryDate;
-    this.expiryDate = expiryDate;
-    this.isExpired = moment(this.expiryDate).isBefore();
+    this.expiryDate = moment(expiryDate);
+    this.hasExpiryDate = expiryDate ? true : false;
+    this.isExpired = this.expiryDate.isBefore();
+    this.willExpireIn = this.expiryDate.diff(moment(), 'days');
   }
 }
 
 export class FoodItem extends Item {
-  constructor(
-    name,
-    hasExpiryDate = false,
-    expiryDate = null,
-    isOpened = false,
-    useByAfterOpening = null
-  ) {
-    super(name, hasExpiryDate, expiryDate);
+  constructor(name, expiryDate = null, isOpened = false, useByAfterOpening = null) {
+    super(name, expiryDate);
     this.isOpened = isOpened;
     this.useByAfterOpening = useByAfterOpening;
   }
