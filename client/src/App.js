@@ -12,7 +12,6 @@ class App extends React.Component {
   };
 
   setAppState = newState => {
-    console.log('setNewState has fired');
     this.setState({ items: newState });
   };
 
@@ -20,7 +19,6 @@ class App extends React.Component {
     axios
       .get('http://localhost:3000/inventory')
       .then(res => {
-        console.log('Get request has fired', res.data);
         this.setState({ items: res.data.items });
       })
       .catch(err => {
@@ -29,7 +27,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('App rendered');
     return (
       <div className="App">
         <Header />

@@ -12,12 +12,10 @@ class AddItem extends React.Component {
     const obj = new FoodItem(this.state.name);
     axios
       .post('http://localhost:3000/create', obj)
-      .then(res => console.log(res))
       .then(() => {
         axios
           .get('http://localhost:3000/inventory')
           .then(res => {
-            console.log('Get request has fired', res.data);
             this.props.setAppState(res.data.items);
             this.setState({ name: '' });
           })

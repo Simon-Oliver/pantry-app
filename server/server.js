@@ -12,8 +12,7 @@ app.use(express.json());
 
 app.post('/create', (req, res) => {
   inventory.createInventoryItem(req.body);
-  console.log(req);
-  res.send('working');
+  res.send('Item added');
 });
 
 app.get('/inventory', function(req, res) {
