@@ -1,0 +1,12 @@
+.expired {
+    background: rgb(34, 34, 34);
+    color: white;
+}
+
+.inDate {
+    background: #23a13e;
+}
+
+.soonToExpire {
+    background: #f0d32f;
+}

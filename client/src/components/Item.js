@@ -1,4 +1,5 @@
 import React from 'react';
+import './item.css';
 
 const Item = props => {
   const expiredStatus = () => {
@@ -16,8 +17,19 @@ const Item = props => {
       }.`;
     }
   };
+
+  const classNameColor = () => {
+    if (props.data.willExpireIn < 0) {
+      return 'expired';
+    } else if (props.data.willExpireIn <= 7) {
+      return 'soonToExpire';
+    } else {
+      return 'inDate';
+    }
+  };
+
   return (
-    <div>
+    <div className={classNameColor()}>
       <p>{props.data.name}</p>
       <p>{expiredStatus()}</p>
     </div>
