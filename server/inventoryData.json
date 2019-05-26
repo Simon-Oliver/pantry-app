@@ -29,6 +29,16 @@
       "isOpened": false,
       "useByAfterOpening": null,
       "id": "7q1t18s9jw39cr09"
+    },
+    {
+      "name": "Sugar",
+      "expiryDate": null,
+      "hasExpiryDate": false,
+      "isExpired": false,
+      "willExpireIn": null,
+      "isOpened": false,
+      "useByAfterOpening": null,
+      "id": "7q1t18smjw4fc97w"
     }
   ]
 }

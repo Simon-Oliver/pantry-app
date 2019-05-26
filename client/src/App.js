@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AddItem from './components/AddItem';
 import ShowItems from './components/ShowItems';
+import './App.css';
 
 import axios from 'axios';
 

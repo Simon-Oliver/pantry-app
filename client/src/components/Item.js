@@ -19,12 +19,12 @@ const Item = props => {
   };
 
   const classNameColor = () => {
-    if (props.data.willExpireIn < 0) {
-      return 'expired';
-    } else if (props.data.willExpireIn <= 7) {
-      return 'soonToExpire';
-    } else {
+    if (!props.data.hasExpiryDate || props.data.willExpireIn > 7) {
       return 'inDate';
+    } else if (!props.data.isExpired && props.data.willExpireIn <= 7) {
+      return 'soonToExpire';
+    } else if (props.data.isExpired) {
+      return 'expired';
     }
   };
 

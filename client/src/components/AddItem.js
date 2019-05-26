@@ -39,7 +39,7 @@ class AddItem extends React.Component {
       <form onSubmit={e => this.handleOnsubmit(e)}>
         <label>Add Item</label>
         <input name="name" value={this.state.name} onChange={e => this.handleInputChange(e)} />
-        <label htmlFor="expiryDate">Start date:</label>
+        <label htmlFor="expiryDate">Expiry Date:</label>
         <input
           type="date"
           id="expiryDate"
