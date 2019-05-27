@@ -1,39 +1,61 @@
 import React from 'react';
 import './item.css';
+import axios from 'axios';
 
-const Item = props => {
-  const expiredStatus = () => {
-    if (props.data.isExpired) {
-      return `Item has expired ${props.data.willExpireIn * -1} day${
-        props.data.willExpireIn * -1 === 1 ? '' : 's'
+class Item extends React.Component {
+  expiredStatus = () => {
+    if (this.props.data.isExpired) {
+      return `Item has expired ${this.props.data.willExpireIn * -1} day${
+        this.props.data.willExpireIn * -1 === 1 ? '' : 's'
       } ago`;
-    } else if (!props.data.hasExpiryDate) {
+    } else if (!this.props.data.hasExpiryDate) {
       return `Item has no expiry date`;
-    } else if (props.data.willExpireIn === 0) {
+    } else if (this.props.data.willExpireIn === 0) {
       return `Item will expire today!`;
     } else {
-      return `Item will expire in ${props.data.willExpireIn} day${
-        props.data.willExpireIn === 1 ? '' : 's'
+      return `Item will expire in ${this.props.data.willExpireIn} day${
+        this.props.data.willExpireIn === 1 ? '' : 's'
       }.`;
     }
   };
 
-  const classNameColor = () => {
-    if (!props.data.hasExpiryDate || props.data.willExpireIn > 7) {
+  classNameColor = () => {
+    if (!this.props.data.hasExpiryDate || this.props.data.willExpireIn > 7) {
       return 'inDate';
-    } else if (!props.data.isExpired && props.data.willExpireIn <= 7) {
+    } else if (!this.props.data.isExpired && this.props.data.willExpireIn <= 7) {
       return 'soonToExpire';
-    } else if (props.data.isExpired) {
+    } else if (this.props.data.isExpired) {
       return 'expired';
     }
   };
 
-  return (
-    <div className={classNameColor()}>
-      <p>{props.data.name}</p>
-      <p>{expiredStatus()}</p>
-    </div>
-  );
-};
+  onButtonClick = () => {
+    axios
+      .post('http://localhost:3000/delete', { id: this.props.data.id })
+      .then(() => {
+        axios
+          .get('http://localhost:3000/inventory')
+          .then(res => {
+            this.props.setAppState(res.data);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
+  render() {
+    return (
+      <div className={this.classNameColor()}>
+        <p>{this.props.data.name}</p>
+        <p>{this.expiredStatus()}</p>
+        <button onClick={this.onButtonClick}>Delete</button>
+      </div>
+    );
+  }
+}
 
 export default Item;

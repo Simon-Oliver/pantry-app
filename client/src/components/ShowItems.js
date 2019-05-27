@@ -2,8 +2,9 @@ import React from 'react';
 import Item from './Item';
 
 const ShowItems = props => {
-  const renderList = props.items.map(e => <Item key={e.id} data={e} />);
-  console.log(renderList);
+  const renderList = props.items.map(e => (
+    <Item key={e.id} data={e} setAppState={props.setAppState} />
+  ));
   return <div>{renderList}</div>;
 };
 

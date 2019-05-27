@@ -9,7 +9,8 @@ import axios from 'axios';
 
 class App extends React.Component {
   state = {
-    items: []
+    items: [],
+    isReady: false
   };
 
   setAppState = newState => {
@@ -20,10 +21,13 @@ class App extends React.Component {
     axios
       .get('http://localhost:3000/inventory')
       .then(res => {
-        this.setState({ items: res.data.items });
+        this.setState({ items: res.data });
+      })
+      .then(() => {
+        this.setState({ isReady: true });
       })
       .catch(err => {
-        console.error(err);
+        console.error('Whooops App did mount', err);
       });
   }
 
@@ -31,8 +35,12 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <AddItem setAppState={this.setAppState} />
-        <ShowItems items={this.state.items} />
+        <div class="siteContent">
+          <AddItem setAppState={this.setAppState} />
+          {this.state.isReady && (
+            <ShowItems items={this.state.items} setAppState={this.setAppState} />
+          )}
+        </div>
         <Footer />
       </div>
     );

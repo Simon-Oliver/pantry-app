@@ -10,3 +10,8 @@
 .soonToExpire {
     background: #f0d32f;
 }
+
+div {
+    padding: 1rem;
+    margin-bottom: .5rem;
+}

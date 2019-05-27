@@ -1,3 +1,12 @@
 .App {
-    padding: 5rem;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.siteContent {
+    flex: 1;
 }

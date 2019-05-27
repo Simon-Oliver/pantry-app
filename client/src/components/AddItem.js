@@ -20,7 +20,7 @@ class AddItem extends React.Component {
         axios
           .get('http://localhost:3000/inventory')
           .then(res => {
-            this.props.setAppState(res.data.items);
+            this.props.setAppState(res.data);
             this.setState({ name: '', expiryDate: '', useByAfterOpening: '' });
           })
           .catch(err => {
@@ -34,7 +34,6 @@ class AddItem extends React.Component {
 
   handleInputChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target);
   }
 
   handleInputChangeRadio(e) {

@@ -15,6 +15,11 @@ app.post('/create', (req, res) => {
   res.send('Item added');
 });
 
+app.post('/delete', (req, res) => {
+  inventory.deleteInventoryItem(req.body.id);
+  res.send('Item deleted');
+});
+
 app.get('/inventory', function(req, res) {
   fs.readFile(path.resolve(__dirname, 'inventoryData.json'), 'utf8', function(err, data) {
     if (err) {
