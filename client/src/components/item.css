@@ -11,7 +11,16 @@
     background: #f0d32f;
 }
 
-div {
-    padding: 1rem;
+.item {
+    padding: .8rem;
     margin-bottom: .5rem;
+    border-radius: 10px;
+}
+
+.item h3 {
+    margin: 0 0 .5rem 0;
+}
+
+.item p {
+    margin: .2rem 0;
 }

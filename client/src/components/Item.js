@@ -21,11 +21,11 @@ class Item extends React.Component {
 
   classNameColor = () => {
     if (!this.props.data.hasExpiryDate || this.props.data.willExpireIn > 7) {
-      return 'inDate';
+      return 'item inDate';
     } else if (!this.props.data.isExpired && this.props.data.willExpireIn <= 7) {
-      return 'soonToExpire';
+      return 'item soonToExpire';
     } else if (this.props.data.isExpired) {
-      return 'expired';
+      return 'item expired';
     }
   };
 
@@ -50,7 +50,7 @@ class Item extends React.Component {
   render() {
     return (
       <div className={this.classNameColor()}>
-        <p>{this.props.data.name}</p>
+        <h3>{this.props.data.name}</h3>
         <p>{this.expiredStatus()}</p>
         <button onClick={this.onButtonClick}>Delete</button>
       </div>

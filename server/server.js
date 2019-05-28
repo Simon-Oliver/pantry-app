@@ -23,7 +23,7 @@ app.post('/delete', (req, res) => {
 app.get('/inventory', function(req, res) {
   fs.readFile(path.resolve(__dirname, 'inventoryData.json'), 'utf8', function(err, data) {
     if (err) {
-      return 'error';
+      return err;
     } else if (!err) {
       res.send(data);
     }
