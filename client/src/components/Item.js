@@ -49,8 +49,11 @@ class Item extends React.Component {
 
   render() {
     return (
-      <div className={this.classNameColor()}>
-        <h3>{this.props.data.name}</h3>
+      <div
+        className={this.classNameColor()}
+        onClick={() => this.props.editSelectedItem(this.props.data)}
+      >
+        <h3>{this.props.data.name} </h3>
         <p>{this.expiredStatus()}</p>
         <button onClick={this.onButtonClick}>Delete</button>
       </div>

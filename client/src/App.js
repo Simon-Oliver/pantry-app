@@ -3,6 +3,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AddItem from './components/AddItem';
 import ShowItems from './components/ShowItems';
+import EditModal from './components/EditModal';
+
 import './App.css';
 
 import axios from 'axios';
@@ -10,7 +12,8 @@ import axios from 'axios';
 class App extends React.Component {
   state = {
     items: [],
-    isReady: false
+    isReady: false,
+    editModalIsOpen: false
   };
 
   setAppState = newState => {
@@ -31,14 +34,24 @@ class App extends React.Component {
       });
   }
 
+  editSelectedItem = obj => {
+    this.setState({ editModalIsOpen: true });
+    console.log(obj);
+  };
+
   render() {
     return (
       <div className="App">
         <Header />
         <div class="siteContent">
+          <EditModal isOpen={this.state.editModalIsOpen} />
           <AddItem setAppState={this.setAppState} />
           {this.state.isReady && (
-            <ShowItems items={this.state.items} setAppState={this.setAppState} />
+            <ShowItems
+              items={this.state.items}
+              setAppState={this.setAppState}
+              editSelectedItem={this.editSelectedItem}
+            />
           )}
         </div>
         <Footer />
