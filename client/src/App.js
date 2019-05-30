@@ -13,7 +13,8 @@ class App extends React.Component {
   state = {
     items: [],
     isReady: false,
-    editModalIsOpen: false
+    editModalIsOpen: false,
+    selecteditem: {}
   };
 
   setAppState = newState => {
@@ -35,16 +36,26 @@ class App extends React.Component {
   }
 
   editSelectedItem = obj => {
-    this.setState({ editModalIsOpen: true });
+    this.setState({ editModalIsOpen: true, selecteditem: obj });
     console.log(obj);
+  };
+
+  onModalInputChange = e => {
+    this.setState({
+      selecteditem: { ...this.state.selecteditem, [e.target.name]: e.target.value }
+    });
   };
 
   render() {
     return (
       <div className="App">
         <Header />
-        <div class="siteContent">
-          <EditModal isOpen={this.state.editModalIsOpen} />
+        <div className="siteContent">
+          <EditModal
+            isOpen={this.state.editModalIsOpen}
+            data={this.state.selecteditem}
+            onModalInputChange={this.onModalInputChange}
+          />
           <AddItem setAppState={this.setAppState} />
           {this.state.isReady && (
             <ShowItems
