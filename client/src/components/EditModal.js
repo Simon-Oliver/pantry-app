@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import moment from 'moment';
 
 class EditModal extends React.Component {
   render() {
@@ -18,7 +19,7 @@ class EditModal extends React.Component {
             type="date"
             id="expiryDate"
             name="expiryDate"
-            value={this.props.data.expiryDate}
+            value={moment(this.props.data.expiryDate).format('YYYY-MM-DD')}
             onChange={e => this.props.onModalInputChange(e)}
           />
           <div>
@@ -28,7 +29,7 @@ class EditModal extends React.Component {
               name="isOpened"
               value={false}
               checked={!this.props.data.isOpened}
-              onChange={e => this.handleInputChangeRadio(e)}
+              onChange={e => this.props.handleModelInputChangeRadio(e)}
             />
             <label htmlFor="Unopened">Unopened</label>
           </div>
@@ -40,7 +41,7 @@ class EditModal extends React.Component {
               name="isOpened"
               value={true}
               checked={this.props.data.isOpened}
-              onChange={e => this.handleInputChangeRadio(e)}
+              onChange={e => this.props.handleModelInputChangeRadio(e)}
             />
             <label htmlFor="open">Is Open</label>
           </div>
@@ -49,11 +50,11 @@ class EditModal extends React.Component {
             type="date"
             id="useByAfterOpening"
             name="useByAfterOpening"
-            value={this.props.data.useByAfterOpening}
+            value={moment(this.props.data.useByAfterOpening).format('YYYY-MM-DD')}
             onChange={e => this.props.onModalInputChange(e)}
           />
+          <button onClick={e => this.props.onModalBtnClick(e)}>Save</button>
         </form>
-        <button onClick={() => this.onModalBtnClick()}>Save</button>
       </Modal>
     );
   }

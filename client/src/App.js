@@ -46,6 +46,19 @@ class App extends React.Component {
     });
   };
 
+  handleModelInputChangeRadio = e => {
+    const boolean = e.target.value === 'false' ? false : true;
+    this.setState({
+      selecteditem: { ...this.state.selecteditem, [e.target.name]: boolean }
+    });
+  };
+
+  onModalBtnClick = e => {
+    e.preventDefault();
+    console.log(this.state.selecteditem);
+    this.setState({ editModalIsOpen: false });
+  };
+
   render() {
     return (
       <div className="App">
@@ -55,6 +68,8 @@ class App extends React.Component {
             isOpen={this.state.editModalIsOpen}
             data={this.state.selecteditem}
             onModalInputChange={this.onModalInputChange}
+            handleModelInputChangeRadio={this.handleModelInputChangeRadio}
+            onModalBtnClick={this.onModalBtnClick}
           />
           <AddItem setAppState={this.setAppState} />
           {this.state.isReady && (
