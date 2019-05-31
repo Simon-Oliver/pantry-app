@@ -52,7 +52,29 @@ function deleteInventoryItem(id) {
   });
 }
 
+function editInventoryItem(id, newData) {
+  fs.readFile(path.resolve(__dirname, 'inventoryData.json'), 'utf8', function readFileCallback(
+    err,
+    data
+  ) {
+    console.log('editInventoryItem', id);
+    let obj = JSON.parse(data); //now it's an object
+    const newObj = obj.filter(e => e.id !== id); //add some data
+    const arr = [...newObj, newData];
+    console.log(arr);
+    let json = JSON.stringify(arr); //convert it back to json
+    fs.writeFile('inventoryData.json', json, 'utf8', (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data, 'succsess');
+      }
+    });
+  });
+}
+
 module.exports = {
   createInventoryItem,
-  deleteInventoryItem
+  deleteInventoryItem,
+  editInventoryItem
 };
